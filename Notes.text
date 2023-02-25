@@ -1,0 +1,8 @@
+dotnet watch --no-hot-reload 
+
+Git
+//new git
+git init
+
+//gitignore
+dotnet new gitignore 
