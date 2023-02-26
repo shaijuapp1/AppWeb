@@ -40,5 +40,12 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
+
+        // [AllowAnonymous]
+        // [HttpGet]
+        // public string TestReq()
+        // {
+        //     return DateTime.Now.ToString();
+        // }
     }
 }
