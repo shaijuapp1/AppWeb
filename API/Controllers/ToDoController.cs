@@ -41,11 +41,13 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
 
-        // [AllowAnonymous]
-        // [HttpGet]
-        // public string TestReq()
-        // {
-        //     return DateTime.Now.ToString();
-        // }
+        [AllowAnonymous]
+        [HttpGet("TestReq")]
+        public ToDo TestReq()
+        {
+            ToDo t = new ToDo();
+            t.Title = DateTime.Now.ToString();
+            return t;
+        }
     }
 }

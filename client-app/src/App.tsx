@@ -7,16 +7,27 @@ import axios from 'axios';
 
 function App() {
   const [toDos, setToDos] = useState([]);
+  const [test, setTest] = useState({});
+
 
   useEffect(() => {
     axios.get( process.env.REACT_APP_API_URL + "/ToDos")
       .then(response => {
         setToDos(response.data);
       })
+
+    axios.get( process.env.REACT_APP_API_URL + "/ToDos/TestReq")
+      .then(response => {
+        debugger;
+        setTest(response);
+      })
+
   }, [])
 
   return (
     <div className="App">
+      
+
       <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do List123</h3>
       <table border={1} style={{margin: '10px 50px', textAlign: 'left'}} >
         <tr>          
