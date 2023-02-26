@@ -3,41 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context)
+          public static async Task SeedData(DataContext context,
+            UserManager<AppUser> userManager)
         {
-            if (context.ToDos.Any()) return;
-            
-            var todos = new List<ToDo>
-            {
-                new ToDo
-                {
-                    Title = "Past Activity 1",
-                    TragetDate = DateTime.UtcNow.AddMonths(2),                    
-                },
-                new ToDo
-                {
-                    Title = "Past Activity 2",
-                    TragetDate = DateTime.UtcNow.AddMonths(1),                    
-                },
-                new ToDo
-                {
-                    Title = "Future Activity 1",
-                    TragetDate = DateTime.UtcNow.AddMonths(1),                    
-                },
-                new ToDo
-                {
-                    Title = "Future Activity 2",
-                    TragetDate = DateTime.UtcNow.AddMonths(2),                    
-                }
-            };
 
-            await context.ToDos.AddRangeAsync(todos);
-            await context.SaveChangesAsync();
+            if (!userManager.Users.Any() )
+            {
+                var users = new List<AppUser>
+                {
+                    new AppUser
+                    {
+                        DisplayName = "Bob",
+                        UserName = "bob",
+                        Email = "bob@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Jane",
+                        UserName = "jane",
+                        Email = "jane@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Tom",
+                        UserName = "tom",
+                        Email = "tom@test.com"
+                    },
+                };
+
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }
+            
+            if (context.ToDos.Any()) 
+            {
+                
+                var todos = new List<ToDo>
+                {
+                    new ToDo
+                    {
+                        Title = "Past Activity 1",
+                        TragetDate = DateTime.UtcNow.AddMonths(2),                    
+                    },
+                    new ToDo
+                    {
+                        Title = "Past Activity 2",
+                        TragetDate = DateTime.UtcNow.AddMonths(1),                    
+                    },
+                    new ToDo
+                    {
+                        Title = "Future Activity 1",
+                        TragetDate = DateTime.UtcNow.AddMonths(1),                    
+                    },
+                    new ToDo
+                    {
+                        Title = "Future Activity 2",
+                        TragetDate = DateTime.UtcNow.AddMonths(2),                    
+                    }
+                };
+
+                await context.ToDos.AddRangeAsync(todos);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

@@ -6,3 +6,11 @@ git init
 
 //gitignore
 dotnet new gitignore 
+
+//Commit change in WV ComponentModel
+
+//Create repoesity in github
+
+=========================
+
+dotnet ef migrations add IdentityDbContext -p Persistence/ -s API/
