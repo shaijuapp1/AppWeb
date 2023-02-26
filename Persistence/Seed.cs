@@ -43,7 +43,7 @@ namespace Persistence
                 }
             }
             
-            if (context.ToDos.Any()) 
+            if (!context.ToDos.Any()) 
             {
                 
                 var todos = new List<ToDo>
