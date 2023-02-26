@@ -9,19 +9,18 @@ function App() {
   const [toDos, setToDos] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/ToDos')
+    axios.get( process.env.REACT_APP_API_URL + "/ToDos")
       .then(response => {
         setToDos(response.data);
       })
   }, [])
-
 
   return (
     <div className="App">
       <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do</h3>
       <table border={1} style={{margin: '10px 50px', textAlign: 'left'}} >
         <tr>          
-            <th>Si. no</th>
+            <th>SiNo.</th>
             <th>Title</th>          
         </tr>
         {toDos.map((todo: any) => (
