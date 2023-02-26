@@ -13,4 +13,44 @@ dotnet new gitignore
 
 =========================
 
-dotnet ef migrations add IdentityDbContext -p Persistence/ -s API/
+dotnet ef migrations add PostgressInit -p Persistence/ -s API/
+
+=========================
+
+//Create DB - run in command not in vs code
+docker run --name dev –e POSTGRES_USER=admin –e POSTGRES_PASSWORD=shaiju –p 5432:5432 -d postgres:latest
+
+//drop Database
+dotnet ef  database drop -p Persistence/ -s API/
+
+dotnet ef migrations add PostgressInit -p Persistence/ -s API/
+
+//Create image in local docker using config file Dockerfile 
+docker build -t shaijukumar/appweb .
+
+
+//run locally
+docker run --rm -it -p 8080:80 shaijukumar/appweb
+
+//push to docker server
+docker push shaijukumar/appweb:latest
+
+//upload to fly
+fly launch --image shaijukumar/appweb:latest
+
+  Username:    postgres
+  Password:    Hu5CdpxbfOPif0n
+  Hostname:    solitary-sky-9418-db.internal
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:Hu5CdpxbfOPif0n@solitary-sky-9418-db.internal:5432
+
+
+
+ //run action from fet hub 
+ 
+  flyctl deploy
+========
+
+"build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
+ "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
