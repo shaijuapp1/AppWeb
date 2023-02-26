@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function App() {
   const [toDos, setToDos] = useState([]);
-  const [test, setTest] = useState({});
+  const [test, setTest] = useState("");
 
 
   useEffect(() => {
@@ -19,7 +19,8 @@ function App() {
     axios.get( process.env.REACT_APP_API_URL + "/ToDos/TestReq")
       .then(response => {
         debugger;
-        setTest(response);
+        const toDo = response as any
+        setTest(toDo.data.title );
       })
 
   }, [])
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="App">
       
-
+      <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do - {test}</h3>
       <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do List123</h3>
       <table border={1} style={{margin: '10px 50px', textAlign: 'left'}} >
         <tr>          
