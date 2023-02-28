@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       
       <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do - {test}</h3>
-      <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do List123</h3>
+      <h3  style={{margin: '10px 50px', textAlign: 'left'}} >To Do List</h3>
       <table border={1} style={{margin: '10px 50px', textAlign: 'left'}} >
         <tr>          
             <th>SiNo.</th>
