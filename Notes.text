@@ -54,3 +54,5 @@ fly launch --image shaijukumar/appweb:latest
 
 "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
  "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
+
+ "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
