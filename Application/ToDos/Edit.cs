@@ -36,12 +36,61 @@ namespace Application.ToDos
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
-            {
-                var toDo = await _context.ToDos.FindAsync(request.ToDo.Id);
+            {               
+                var toDo = await _context.ToDos
+                    .Include( t => t.AssignedTo )
+                    .FirstOrDefaultAsync(x => x.Id == request.ToDo.Id); 
                
                 if (toDo == null) return null;
 
-                _mapper.Map(request.ToDo, toDo);
+                toDo.Title  = request.ToDo.Title ?? request.ToDo.Title;
+                
+                toDo.TragetDate  = request.ToDo.TragetDate;
+                
+                # region Add/Remove ToDoAssignedTo
+
+                ICollection<ToDoAssignedTo> AssignedTo = new List<ToDoAssignedTo>(); 
+                //Remove if not exists
+                ICollection<ToDoAssignedTo> remList = new List<ToDoAssignedTo>();
+                foreach( ToDoAssignedTo ass in  toDo.AssignedTo ){
+                    bool remove = true;
+                    foreach( ToDoAssignedTo toass in  request.ToDo.AssignedTo ){
+                        if( ass.AppUserId == toass.AppUserId ){
+                            remove = false;
+                        }
+                    }
+                    if(remove){
+                        remList.Add(ass);
+                        
+                    }                    
+                }
+                foreach( ToDoAssignedTo ass in  remList ){
+                    toDo.AssignedTo.Remove(ass);
+                }
+
+                toDo = await _context.ToDos
+                    .Include( t => t.AssignedTo )
+                    .FirstOrDefaultAsync(x => x.Id == request.ToDo.Id); 
+
+                
+                //Add New items
+                ICollection<ToDoAssignedTo> addList = new List<ToDoAssignedTo>();
+                foreach( ToDoAssignedTo toass in  request.ToDo.AssignedTo ){
+                     bool add = true;
+                    foreach( ToDoAssignedTo ass in  toDo.AssignedTo ){
+                          if( ass.AppUserId == toass.AppUserId ){
+                            add = false;
+                        }
+                    }
+                    if(add){
+                        addList.Add(toass);                                  
+                    }         
+                }
+                foreach( ToDoAssignedTo ass in  addList ){
+                    toDo.AssignedTo.Add(ass);
+                }
+
+                # endregion  Add/Remove ToDoAssignedTo
 
                 var result = await _context.SaveChangesAsync() > 0;
 

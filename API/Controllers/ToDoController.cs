@@ -10,14 +10,14 @@ namespace API.Controllers
     {
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<List<ToDo>>> GetActivities()
+        public async Task<ActionResult> GetActivities()
         {
             return HandleResult(await Mediator.Send(new List.Query()));
         }
         
-        
+        [Authorize(Policy = "IsDevAdmin")]
         [HttpGet("{id}")]
-        public async Task<ActionResult<ToDo>> GetToDo(int id)
+        public async Task<ActionResult> GetToDo(int id)
         {
             return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
         }

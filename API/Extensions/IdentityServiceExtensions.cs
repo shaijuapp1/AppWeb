@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 //using Infrastructure.Security;
 using API.Services;
 using Persistence;
+using Infrastructure.Security;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Extensions
 {
@@ -17,12 +19,22 @@ namespace API.Extensions
         public static IServiceCollection AddIdentityServices(this IServiceCollection services,
             IConfiguration config)
         {
+
+             var builder = services.AddIdentityCore<AppUser>();
+            // var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+            // identityBuilder.AddRoles<IdentityRole>();
+
+
             services.AddIdentityCore<AppUser>(opt =>
-            {
+            {                
                 opt.Password.RequireNonAlphanumeric = false;
-                opt.User.RequireUniqueEmail = true;
+                opt.User.RequireUniqueEmail = true;                
             })
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<DataContext>();
+
+            
+            
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
 
@@ -38,15 +50,15 @@ namespace API.Extensions
                     };
                 });
 
-            // services.AddAuthorization(opt =>
-            // {
-            //     opt.AddPolicy("IsActivityHost", policy =>
-            //     {
-            //         policy.Requirements.Add(new IsHostRequirement());
-            //     });
-            // });
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsDevAdmin", policy =>
+                {
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
 
-            // services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
+            services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
             services.AddScoped<TokenService>();
 
             return services;

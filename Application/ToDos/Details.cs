@@ -10,12 +10,12 @@ namespace Application.ToDos
 {
     public class Details
     {
-        public class Query : IRequest<Result<ToDo>>
+        public class Query : IRequest<Result<ToDoDto>>
         {
             public int Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<ToDo>>
+        public class Handler : IRequestHandler<Query, Result<ToDoDto>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -26,15 +26,12 @@ namespace Application.ToDos
                 _context = context;
             }
 
-            public async Task<Result<ToDo>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<ToDoDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                // var todo = await _context.ToDos
-                //     .ProjectTo<ToDoDto>(_mapper.ConfigurationProvider)
-                //     .FirstOrDefaultAsync(x => x.Id == request.Id);
-
-                var todo = await _context.ToDos.FindAsync(request.Id);
-
-                return Result<ToDo>.Success(todo);
+                var item = await _context.ToDos
+                    .ProjectTo<ToDoDto>(_mapper.ConfigurationProvider)
+                    .FirstOrDefaultAsync(x => x.Id == request.Id);                
+                return Result<ToDoDto>.Success(item);
             }
         }
     }
