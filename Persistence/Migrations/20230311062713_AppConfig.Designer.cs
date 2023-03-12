@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -11,9 +12,11 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230311062713_AppConfig")]
+    partial class AppConfig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,256 +151,6 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.DataSecurity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Access")
-                        .HasColumnType("text");
-
-                    b.Property<string>("AccessType")
-                        .HasColumnType("text");
-
-                    b.Property<int>("FiledId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DataSecuritys");
-                });
-
-            modelBuilder.Entity("Domain.TableData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date1")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date10")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date2")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date3")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date4")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date5")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date6")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date7")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date8")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("Date9")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<float>("Num1")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num10")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num2")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num3")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num4")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num5")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num6")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num7")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num8")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Num9")
-                        .HasColumnType("real");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Txt1")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt10")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt11")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt12")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt13")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt14")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt15")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt16")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt17")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt18")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt19")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt2")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt20")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt3")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt4")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt5")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt6")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt7")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt8")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Txt9")
-                        .HasColumnType("text");
-
-                    b.Property<int>("User1")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User10")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User2")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User3")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User4")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User5")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User6")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User7")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User8")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("User9")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TableDatas");
-                });
-
-            modelBuilder.Entity("Domain.TableField", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomValidationId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DataSecurityId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("FideldName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FiledType")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Required")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TableFields");
-                });
-
-            modelBuilder.Entity("Domain.TableName", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TableNames");
-                });
-
             modelBuilder.Entity("Domain.ToDo", b =>
                 {
                     b.Property<int>("Id")
@@ -436,40 +189,6 @@ namespace Persistence.Migrations
                     b.HasIndex("ToDoId");
 
                     b.ToTable("ToDoAssignedTos");
-                });
-
-            modelBuilder.Entity("Domain.UserType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomValidationId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DataSecurityId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("FideldName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("FiledType")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("Required")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

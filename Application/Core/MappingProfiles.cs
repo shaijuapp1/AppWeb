@@ -1,8 +1,13 @@
 
-
 using Application.ToDos;
 using AutoMapper;
 using Domain;
+using Application.AppConfigTypes;
+using Application.AppConfigs;
+using Application.TableNames;
+using Application.TableFields;
+using Application.DataSecuritys;
+//##MappingUsing##
 
 namespace Application.Core
 {
@@ -22,6 +27,39 @@ namespace Application.Core
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.AppUser.UserName))
                 .ForMember(d => d.Bio, o => o.MapFrom(s => s.AppUser.Bio));
+                        		    						
+			CreateMap<AppConfigType, AppConfigType>(); 
+			CreateMap<AppConfigType, AppConfigTypeDto>();
+
+            CreateMap<AppConfig, AppConfig>(); 
+			CreateMap<AppConfig, AppConfigDto>();
+
+            CreateMap<AppConfig, AppConfig>(); 
+			CreateMap<AppConfig, AppConfigDto>();
+
+            CreateMap<TableName, TableName>(); 
+			CreateMap<TableName, TableNameDto>();
+
+            CreateMap<TableField, TableField>(); 
+			CreateMap<TableField, TableFieldDto>();
+
+            CreateMap<DataSecurity, DataSecurity>(); 
+			CreateMap<DataSecurity, DataSecurityDto>();
+
+			//##MappingProfile#    
+			
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

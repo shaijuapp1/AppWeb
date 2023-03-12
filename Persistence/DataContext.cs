@@ -12,6 +12,14 @@ namespace Persistence
 
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<ToDoAssignedTo> ToDoAssignedTos { get; set; }
+        public DbSet<AppConfigType> AppConfigTypes { get; set; }
+        public DbSet<AppConfig> AppConfigs { get; set; }
+		public DbSet<TableName> TableNames { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<TableData> TableDatas { get; set; }
+		public DbSet<TableField> TableFields { get; set; }
+		public DbSet<DataSecurity> DataSecuritys { get; set; }
+		//##ModelDbSet##
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,3 +42,6 @@ namespace Persistence
         }
     }
 }
+
+
+

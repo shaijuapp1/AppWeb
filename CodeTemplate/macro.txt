@@ -1,0 +1,543 @@
+Dim Class As String
+Dim Object As String
+
+Global JSInterfaceFields As String
+Global JSClassFields As String
+Global JSFormFields As String
+Global JSFormValidation As String
+Global TitleField As String
+Global CSFieldListWithoutID As String
+
+Global SPListTitle As String
+Global SPWpName As String
+Global CSListTable As String
+
+Sub file()
+
+SPWpName = Cells(3, 10)
+SPListTitle = Cells(4, 10)
+
+
+CSFieldListWithoutID = ""
+
+JSInterfaceFields = ""
+JSClassFields = ""
+
+
+JSIList = ""
+JSFormFields = ""
+JSFormValidation = ""
+TitleField = Cells(4, 6)
+
+
+ValueCol = 3
+FieldCol = 2
+DataTypeCol = 3
+JSFieldCol = 5
+JSDataTypeCol = 6
+FieldRqurdCol = 4
+
+
+Dim mobileProjPath As String: mobileProjPath = Cells(5, 6)
+If Right(mobileProjPath, 1) <> "\" Then
+    mobileProjPath = mobileProjPath + "\"
+End If
+
+
+'Constants
+Class = Cells(2, ValueCol)
+Object = Cells(3, ValueCol)
+Dim FeatureFolder As String: FeatureFolder = "_" + Class
+
+
+
+Let TemplatePath = Cells(4, ValueCol)
+If Right(TemplatePath, 1) <> "\" Then
+    TemplatePath = TemplatePath + "\"
+End If
+
+
+Let appPath = Cells(5, ValueCol)
+If Right(appPath, 1) <> "\" Then
+    appPath = appPath + "\"
+End If
+
+Let webAppPath = Cells(3, JSDataTypeCol) + "\"
+
+
+'API Folder
+If appPath <> "\" Then
+
+    'API Folder
+    On Error Resume Next
+    MkDir appPath
+    On Error GoTo 0
+    
+    'API Folder
+    On Error Resume Next
+    MkDir appPath & "API"
+    On Error GoTo 0
+    
+    'Controllers Folder
+    On Error Resume Next
+    MkDir appPath & "API\" & "Controllers"
+    On Error GoTo 0
+        
+    
+    'Domain Project
+    On Error Resume Next
+    MkDir appPath & "Domain"
+    On Error GoTo 0
+    
+    'Application Project
+    On Error Resume Next
+    MkDir appPath & "Application"
+    On Error GoTo 0
+    
+       
+    'Features Folder
+    On Error Resume Next
+    MkDir appPath & "Application\" & Class
+    On Error GoTo 0
+    
+    'Persistence project
+    On Error Resume Next
+    MkDir appPath & "Persistence\"
+    On Error GoTo 0
+
+End If
+
+If webAppPath <> "\" Then
+
+    'Features Folder
+    On Error Resume Next
+    MkDir webAppPath & "src\features\" & Class
+    On Error GoTo 0
+    
+
+End If
+
+
+'CSFieldList
+Dim CSFieldList As String: CSFieldList = ""
+Dim CSValidationList As String: CSValidationList = ""
+Dim CSFieldAssignList As String: CSFieldAssignList = ""
+Dim CSEditFieldAssig As String: CSEditFieldAssig = ""
+CSListTable = ""
+
+Let i = 8
+Do While Cells(i, FieldCol) <> ""
+    
+    'public Guid Id { get; set; }
+    CSFieldList = CSFieldList + Chr$(10) + Chr$(9) + Chr$(9) + "public " + Cells(i, DataTypeCol) + " " + Cells(i, FieldCol) + " { get; set; }"
+    
+    If LCase(Cells(i, FieldRqurdCol)) = "yes" Then
+        CSValidationList = CSValidationList + "RuleFor(x => x." + Cells(i, FieldCol) + ").NotEmpty();" + Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+        
+        'title: Yup.string().required().min(1).label("Title"),
+        JSFormValidation = JSFormValidation + Cells(i, FieldCol) + ": Yup.string().required().min(1).label('" + Cells(i, FieldCol) + "')," + Chr$(10) + Chr$(9)
+    End If
+    
+       
+    If LCase(Cells(i, FieldCol)) <> "id" Then
+    
+        'NewLineSpace = Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+        CSListTable = CSListTable + NewLineSpace + "<Table.Column align='left' fixed>" + NewLineSpace + Chr$(9) + "<Table.HeaderCell>" + Cells(i, FieldCol) + "</Table.HeaderCell>" + NewLineSpace + Chr$(9) + "<Table.Cell dataKey='" + Cells(i, FieldCol) + "' />" + NewLineSpace + "</Table.Column>"
+    
+        'public Guid Id { get; set; }
+        CSFieldListWithoutID = CSFieldListWithoutID + Chr$(10) + Chr$(9) + Chr$(9) + "public " + Cells(i, DataTypeCol) + " " + Cells(i, FieldCol) + " { get; set; }"
+    
+        If CSFieldAssignList <> "" Then
+            CSFieldAssignList = CSFieldAssignList + "," + Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+        End If
+        'DisplayName = request.DisplayName,
+        CSFieldAssignList = CSFieldAssignList + Cells(i, FieldCol) + "  = request." + Cells(i, FieldCol)
+               
+        'catalog.DisplayName = request.DisplayName ?? catalog.DisplayName;
+        CSEditFieldAssig = CSEditFieldAssig + Object + "." + Cells(i, FieldCol) + "  = request." + Cells(i, FieldCol) + " ?? " + Object + "." + Cells(i, FieldCol) + ";" + Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+        
+        '<FormField maxLength={255} name="title" placeholder="Title" />
+        JSFormFields = JSFormFields + Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+        JSFormFields = JSFormFields + "<FormField maxLength={255} name='" + Cells(i, FieldCol) + "' placeholder='" + Cells(i, FieldCol) + "' />"
+        
+    End If
+    
+    dtype = Cells(i, JSDataTypeCol)
+'    If dtype = "Guid" Then
+'        dtype = "string"
+'    End If
+    
+    'id: string;
+    JSInterfaceFields = JSInterfaceFields + Chr$(10) + Chr$(9) + Cells(i, JSFieldCol) + ": " + dtype
+    
+    'id: string;
+    Select Case dtype
+        Case "string":
+            initVal = "''"
+        Case "number":
+            initVal = "0"
+        Case "boolean ":
+            initVal = "false"
+    End Select
+    
+    JSClassFields = JSClassFields + Chr$(10) + Chr$(9) + Cells(i, JSFieldCol) + ": " + dtype + " = " + initVal + ";"
+
+    i = i + 1
+Loop
+
+
+    Dim d
+    Set d = CreateObject("Scripting.Dictionary")
+    
+    If appPath <> "\" Then
+    
+'        d.Add "Model\Model.cs", appPath + "Domain\##Class##.cs"
+'        d.Add "Features\Dto.cs", appPath + "Application\##Class##\##Class##Dto.cs"
+'        d.Add "Features\MappingProfile.cs", appPath + "Application\##Class##\##Class##Validator.cs"
+'        d.Add "Features\Create.cs", appPath + "Application\##Class##\Create.cs"
+'        d.Add "Features\Delete.cs", appPath + "Application\##Class##\Delete.cs"
+'        d.Add "Features\Details.cs", appPath + "Application\##Class##\Details.cs"
+'        d.Add "Features\Edit.cs", appPath + "Application\##Class##\Edit.cs"
+'        d.Add "Features\List.cs", appPath + "Application\##Class##\List.cs"
+'        d.Add "Controllers\Controller.cs", appPath + "API\Controllers\##Class##Controller.cs"
+
+'        d.Add "ClientApp\Model.ts", webAppPath + "src\app\models\##Class##.ts"
+'        d.Add "ClientApp\Store.ts", webAppPath + "src\app\stores\##Class##Store.ts"
+        
+        d.Add "ClientApp\List.tsx", webAppPath + "src\features\##Class##\##Class##List.tsx"
+        'src\features\ToDo\ToDoList.tsx
+        
+      
+    End If
+ 
+  
+Dim TemplateFilePath As String
+Dim CreateFilePath As String
+For i = 0 To d.Count - 1
+    TemplateFilePath = TemplatePath + Replace(d.Keys()(i), "##Class##", Class)
+    
+    CreateFilePath = Replace(d.Items()(i), "_ListTitle_", SPListTitle)
+    CreateFilePath = Replace(CreateFilePath, "_WpName_", SPWpName)
+    
+    CreateFilePath = Replace(d.Items()(i), "##Class##", Class)
+    CreateFilePath = Replace(CreateFilePath, "_Feature_", Class)
+    
+    res = CreateFile(TemplateFilePath, CreateFilePath, CSFieldList, CSValidationList, CSFieldAssignList, CSEditFieldAssig)
+
+    res = LogAction((i), "Created", CreateFilePath)
+   
+Next
+
+If appPath <> "\" Then
+     'UpdateDataContext (appPath + "Persistence\DataContext.cs")
+    res = LogAction(d.Count + 1, "Updated", appPath + "Persistence\MappingProfiles.cs")
+End If
+
+If appPath <> "\" Then
+    'Application\Core\MappingProfiles.cs
+    UpdateMappingProfiles (appPath + "Application\Core\MappingProfiles.cs")
+    res = LogAction(d.Count + 1, "Updated", appPath + "Application\Core\MappingProfiles.cs")
+End If
+
+If webAppPath <> "\" Then
+    'Application\Core\MappingProfiles.cs
+    AgentDataPath = TemplatePath + "ClientApp\StroreData.ts"
+    v = UpdateAgentData(webAppPath + "src\app\api\agent.ts", TemplatePath + "ClientApp\StroreData.ts")
+    res = LogAction(d.Count + 1, "Updated", webAppPath + "src\app\api\agent.ts")
+End If
+
+
+
+
+
+If mobileProjPath <> "\" Then
+    ''app\common\data\rootStore.ts
+    'r = UpdateRootStore(mobileProjPath + "app\common\rootStore.ts", "../../screens/")
+    'res = LogAction(d.Count + 2, "Updated", appPath + "app\common\data\rootStore.ts")
+End If
+
+MsgBox ("Created")
+    
+End Sub
+
+Function LogAction(row As Integer, action As String, CreateFilePath As String)
+
+LogColStatus = 9
+LogFilePath = 10
+
+Cells(row + 7, LogColStatus) = action
+Cells(row + 7, LogFilePath) = CreateFilePath
+
+End Function
+
+
+Function CreateFile(TemplateFilePath As String, CreateFilePath As String, CSFieldList As String, CSValidationList As String, CSFieldAssignList As String, CSEditFieldAssig As String) As Boolean
+
+'Read template File
+Dim strFilename As String: strFilename = TemplateFilePath
+Dim strFileContent As String
+Dim iFile As Integer: iFile = FreeFile
+Open strFilename For Input As #iFile
+fileContent = Input(LOF(iFile), iFile)
+Close #iFile
+
+
+'Dotnet API
+fileContent = Replace(fileContent, "##CSFieldList##", CSFieldList)
+fileContent = Replace(fileContent, "##CSFieldListWithoutID##", CSFieldListWithoutID)
+
+fileContent = Replace(fileContent, "##Class##", Class)
+fileContent = Replace(fileContent, "##Object##", Object)
+fileContent = Replace(fileContent, "##CSValidation##", CSValidationList)
+fileContent = Replace(fileContent, "##CSFieldAssign##", CSFieldAssignList)
+fileContent = Replace(fileContent, "##CSEditFieldAssign##", CSEditFieldAssig)
+fileContent = Replace(fileContent, "##CSListTable##", CSListTable)
+
+'React JS
+fileContent = Replace(fileContent, "_Feature_", Class)
+fileContent = Replace(fileContent, "_FeatureObj_", Object)
+fileContent = Replace(fileContent, "##JSInterfaceFields##", JSInterfaceFields)
+fileContent = Replace(fileContent, "##JSClassFields##", JSClassFields)
+fileContent = Replace(fileContent, "##JSFormFields##", JSFormFields)
+fileContent = Replace(fileContent, "##JSFormValidation##", JSFormValidation)
+fileContent = Replace(fileContent, "##TitleField##", TitleField)
+
+fileContent = Replace(fileContent, "_ListTitle_", SPListTitle)
+fileContent = Replace(fileContent, "_WpName_", SPWpName)
+
+'Write to application file
+Open CreateFilePath For Output As #1
+Print #1, fileContent
+Close #1
+
+CreateFile = True
+
+
+End Function
+
+Function UpdateRootStore(FilePath As String, path As String)
+
+    Dim strFilename As String: strFilename = FilePath
+    Dim strFileContent As String
+    Dim iFile As Integer: iFile = FreeFile
+    Open strFilename For Input As #iFile
+    fileContent = Input(LOF(iFile), iFile)
+    Close #iFile
+    
+    
+    If InStr(fileContent, Class) > 0 Then
+       Exit Function
+    End If
+    
+    'import _Feature_Store from "../../screens/_Feature_/_Feature_Store";
+    RootImport = "import " + Class + "Store from '" + path + Class + "/" + Class + "Store';" + Chr$(10) + "//##RootImport##"
+    fileContent = Replace(fileContent, "//##RootImport##", RootImport)
+    
+    '_FeatureObj_Store: _Feature_Store;
+    RootImport = Object + "Store: " + Class + "Store;" + Chr$(10) + Chr$(9) + "//##RootField##"
+    fileContent = Replace(fileContent, "//##RootField##", RootImport)
+    
+    'this._FeatureObj_Store = new _Feature_Store(this);
+    '+ Chr$(10) + Chr$(9)
+    RootImport = "this." + Object + "Store = new " + Class + "Store(this);" + Chr$(10) + Chr$(9) + Chr$(9) + "//##RootFieldConstructor##"
+    fileContent = Replace(fileContent, "//##RootFieldConstructor##", RootImport)
+    
+    
+    'Write to application file
+    Open FilePath For Output As #1
+    Print #1, fileContent
+    Close #1
+    
+     
+End Function
+
+Function UpdateNavigation(FilePath As String)
+
+    Dim strFilename As String: strFilename = FilePath
+    Dim strFileContent As String
+    Dim iFile As Integer: iFile = FreeFile
+    Open strFilename For Input As #iFile
+    fileContent = Input(LOF(iFile), iFile)
+    Close #iFile
+
+
+    If InStr(fileContent, Class) > 0 Then
+       Exit Function
+    End If
+
+    'import _Feature_Listing from '../screens/_Feature_/_Feature_Listing';
+    RootImport = "import " + Class + "Listing from '../screens/" + Class + "/" + Class + "Listing';" + Chr$(10)
+    'import _Feature_Edit from '../screens/_Feature_/_Feature_Edit';
+    RootImport = RootImport + "import " + Class + "Edit from '../screens/" + Class + "/" + Class + "Edit';" + Chr$(10) + "//##FeatureImport##"
+    fileContent = Replace(fileContent, "//##FeatureImport##", RootImport)
+
+    '<Stack.Screen name="_Feature_Edit" component={_Feature_Edit}
+    '                    options={{ headerTitle: '_Feature_Edit', headerShown: false, }} />
+    fiveTabs = Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+    RootImport = "<Stack.Screen name='" + Class + "Listing' component={" + Class + "Listing}" + Chr$(10)
+    RootImport = RootImport + fiveTabs + "options={{ headerTitle: '" + Class + "Listing', headerShown: false, }} />"
+    
+    RootImport = RootImport + Chr$(10) + Chr$(10) + fiveTabs + "<Stack.Screen name='" + Class + "Edit' component={" + Class + "Edit}" + Chr$(10)
+    RootImport = RootImport + fiveTabs + "options={{ headerTitle: '" + Class + "Edit', headerShown: false, }} />" + Chr$(10) + Chr$(10) + fiveTabs + "{/*##Navigation##*/}"
+    
+    fileContent = Replace(fileContent, "{/*##Navigation##*/}", RootImport)
+   
+
+    'Write to application file
+    Open FilePath For Output As #1
+    Print #1, fileContent
+    Close #1
+'
+     
+End Function
+
+Function UpdateWebNavigation(FilePath As String)
+
+    Dim strFilename As String: strFilename = FilePath
+    Dim strFileContent As String
+    Dim iFile As Integer: iFile = FreeFile
+    Open strFilename For Input As #iFile
+    fileContent = Input(LOF(iFile), iFile)
+    Close #iFile
+
+
+    If InStr(fileContent, Class) > 0 Then
+       Exit Function
+    End If
+    
+    'import StockCatItemEdit from "../../features/StockCat/StockCatEdit";
+    
+    
+
+    'import StockCatList from "../../features/StockCat/StockCatList";
+    RootImport = "import " + Class + "List from '../../features/" + Class + "/" + Class + "List';" + Chr$(10)
+    'import StockCatItemEdit from "../../features/StockCat/StockCatEdit";
+    RootImport = RootImport + "import " + Class + "Edit from '../../features/" + Class + "/" + Class + "Edit';" + Chr$(10) + "//##FeatureImport##"
+    fileContent = Replace(fileContent, "//##FeatureImport##", RootImport)
+
+    '<Route key={location.key} path='/StockCatList' component={StockCatList} />
+    '<Route key={location.key} path={['/StockCatItemEdit/:id', '/StockCatItemEdit/']} component={StockCatItemEdit} />
+    fiveTabs = Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9) + Chr$(9)
+    '<Route key={location.key} path='/StockCatList' component={StockCatList} />
+    RootImport = "<Route path='/" + Class + "List' component={" + Class + "List} />" + Chr$(10)
+    RootImport = RootImport + fiveTabs + "<Route  path={['/" + Class + "ItemEdit/:id', '/" + Class + "ItemEdit/']} component={" + Class + "Edit} />" + Chr$(10)
+    RootImport = RootImport + fiveTabs + "{/*##Navigation##*/}"
+            
+    fileContent = Replace(fileContent, "{/*##Navigation##*/}", RootImport)
+   
+
+    'Write to application file
+    Open FilePath For Output As #1
+    Print #1, fileContent
+    Close #1
+'
+     
+End Function
+
+Function UpdateDataContext(FilePath As String)
+
+    Dim strFilename As String: strFilename = FilePath
+    Dim strFileContent As String
+    Dim iFile As Integer: iFile = FreeFile
+    Open strFilename For Input As #iFile
+    fileContent = Input(LOF(iFile), iFile)
+    Close #iFile
+    
+    
+    If InStr(fileContent, Class) > 0 Then
+       Exit Function
+    End If
+    
+    'public DbSet<TestApp> TestApps { get; set; }
+    RootImport = "public DbSet<" + Class + "> " + Class + "s { get; set; }" + Chr$(10) + Chr$(9) + Chr$(9) + "//##ModelDbSet##"
+    fileContent = Replace(fileContent, "//##ModelDbSet##", RootImport)
+        
+    'Write to application file
+    Open FilePath For Output As #1
+    Print #1, fileContent
+    Close #1
+    
+     
+End Function
+
+Function UpdateMappingProfiles(FilePath As String)
+
+    Dim strFilename As String: strFilename = FilePath
+    Dim strFileContent As String
+    Dim iFile As Integer: iFile = FreeFile
+    Open strFilename For Input As #iFile
+    fileContent = Input(LOF(iFile), iFile)
+    Close #iFile
+    
+    
+    If InStr(fileContent, Class) > 0 Then
+       Exit Function
+    End If
+    'using Application.AppConfigTypes;
+    'CreateMap<AppConfigType, AppConfigType>();
+    RootImport = "CreateMap<" + Class + ", " + Class + ">(); " + Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + "CreateMap<" + Class + ", " + Class + "Dto>();" + Chr$(10) + Chr$(10) + Chr$(9) + Chr$(9) + Chr$(9) + "//##MappingProfile#    "
+    fileContent = Replace(fileContent, "//##MappingProfile##", RootImport)
+    
+    '//##MappingUsing##
+    RootImport = "using Application." + Class + "s;" + Chr$(10) + "//##MappingUsing##"
+    fileContent = Replace(fileContent, "//##MappingUsing##", RootImport)
+        
+    'Write to application file
+    Open FilePath For Output As #1
+    Print #1, fileContent
+    Close #1
+    'C:\Shaiju\GitGub\AppWeb\AppWeb\Application\Core\MappingProfiles.cs
+    'C:\Shaiju\GitGub\AppWeb\AppWeb\Application\Core\MappingProfiles.cs
+    '
+     
+End Function
+
+
+Function UpdateAgentData(FilePath As String, DataFilePath As String)
+
+    Dim strFilename As String: strFilename = FilePath
+    Dim strFileContent As String
+    Dim iFile As Integer: iFile = FreeFile
+    Open strFilename For Input As #iFile
+    fileContent = Input(LOF(iFile), iFile)
+    Close #iFile
+    
+    
+    If InStr(fileContent, Class) > 0 Then
+       Exit Function
+    End If
+    '//##AgentHeader## - import { ToDo } from '../models/ToDo'
+    RootImport = "import { " + Class + " } from '../models/" + Class + "'" + Chr$(10) + "//##AgentHeader##"
+    fileContent = Replace(fileContent, "//##AgentHeader##", RootImport)
+    
+    '//##AgentTitle##
+    RootImport = Class + "s, " + Chr$(10) + Chr$(9) + "//##AgentTitle##"
+    fileContent = Replace(fileContent, "//##AgentTitle##", RootImport)
+    
+    '//##AgentData##
+    Dim iFileData As Integer: iFileData = FreeFile
+    Open DataFilePath For Input As #iFileData
+    fileContentData = Input(LOF(iFileData), iFileData)
+    Close #iFileData
+    
+    fileContentData = Replace(fileContentData, "##Class##", Class)
+    fileContentData = Chr$(10) + Chr$(10) + fileContentData + Chr$(10) + "//##AgentData##"
+    fileContent = Replace(fileContent, "//##AgentData##", fileContentData)
+    
+   
+    
+        
+    'Write to application file
+    Open FilePath For Output As #1
+    Print #1, fileContent
+    Close #1
+    'C:\Shaiju\GitGub\AppWeb\AppWeb\Application\Core\MappingProfiles.cs
+    'C:\Shaiju\GitGub\AppWeb\AppWeb\Application\Core\MappingProfiles.cs
+    '
+     
+End Function
+
+'Update Store
+
+
+

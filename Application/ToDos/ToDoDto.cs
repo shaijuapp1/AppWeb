@@ -13,5 +13,3 @@ namespace Application.ToDos
         public ICollection<Profile> AssignedTo { get; set; }   
     }
 }
-
-//Missing map from Domain.ToDoAssignedTo to Application.Profiles.Profile. Create using CreateMap<ToDoAssignedTo, Profile>
