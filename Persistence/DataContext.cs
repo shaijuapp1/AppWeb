@@ -19,6 +19,7 @@ namespace Persistence
         public DbSet<TableData> TableDatas { get; set; }
 		public DbSet<TableField> TableFields { get; set; }
 		public DbSet<DataSecurity> DataSecuritys { get; set; }
+		
 		//##ModelDbSet##
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -42,6 +43,7 @@ namespace Persistence
         }
     }
 }
+
 
 
 

@@ -7,6 +7,7 @@ using Application.AppConfigs;
 using Application.TableNames;
 using Application.TableFields;
 using Application.DataSecuritys;
+using Application.UserManagers;
 //##MappingUsing##
 
 namespace Application.Core
@@ -46,11 +47,15 @@ namespace Application.Core
             CreateMap<DataSecurity, DataSecurity>(); 
 			CreateMap<DataSecurity, DataSecurityDto>();
 
+            CreateMap<AppUser, AppUser>(); 
+			CreateMap<AppUser, UserManagerDto>();
+
 			//##MappingProfile#    
 			
         }
     }
 }
+
 
 
 
