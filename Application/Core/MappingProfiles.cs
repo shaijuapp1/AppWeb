@@ -8,6 +8,8 @@ using Application.TableNames;
 using Application.TableFields;
 using Application.DataSecuritys;
 using Application.UserManagers;
+using Application.RoleMasters;
+using Microsoft.AspNetCore.Identity;
 //##MappingUsing##
 
 namespace Application.Core
@@ -50,11 +52,15 @@ namespace Application.Core
             CreateMap<AppUser, AppUser>(); 
 			CreateMap<AppUser, UserManagerDto>();
 
+            CreateMap <IdentityRole, RoleMasterDto>();
+            //CreateMap <AppUser, GroupUserDTO>();
+
 			//##MappingProfile#    
 			
         }
     }
 }
+
 
 
 

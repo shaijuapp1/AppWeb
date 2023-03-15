@@ -1,6 +1,7 @@
 using Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
@@ -10,6 +11,7 @@ namespace Persistence
         {
         }
 
+        public DbSet<IdentityRole> AspNetRoles { get; set; }	
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<ToDoAssignedTo> ToDoAssignedTos { get; set; }
         public DbSet<AppConfigType> AppConfigTypes { get; set; }
@@ -20,6 +22,7 @@ namespace Persistence
 		public DbSet<TableField> TableFields { get; set; }
 		public DbSet<DataSecurity> DataSecuritys { get; set; }
 		
+		public DbSet<RoleMaster> RoleMasters { get; set; }
 		//##ModelDbSet##
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -43,6 +46,7 @@ namespace Persistence
         }
     }
 }
+
 
 
 
