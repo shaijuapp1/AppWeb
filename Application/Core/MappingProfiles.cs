@@ -55,6 +55,8 @@ namespace Application.Core
             CreateMap <IdentityRole, RoleMasterDto>();
             //CreateMap <AppUser, GroupUserDTO>();
 
+            CreateMap <AppUser, GroupUserDTO>();
+
 			//##MappingProfile#    
 			
         }

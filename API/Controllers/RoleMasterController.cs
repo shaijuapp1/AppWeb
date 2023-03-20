@@ -34,6 +34,14 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Edit.Command { RoleMaster = item }));
         }
 
+        [HttpGet("{id}", Name = "RoleUserList")]
+        [Route("RoleUserList/{id}")]
+        public async Task<ActionResult> RoleUserList(string id)		
+        {
+             return HandleResult(await Mediator.Send(new GroupUserList.Query { RoleName = id }));            
+        }
+
+
         // [HttpDelete("{id}")]
         // public async Task<IActionResult> Delete(int id)
         // {

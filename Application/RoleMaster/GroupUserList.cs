@@ -11,38 +11,29 @@ namespace Application.RoleMasters
 {
     public class GroupUserList
     {
-        public class Query : IRequest<Result<List<RoleMasterDto>>> { }
+        public class Query : IRequest<Result<List<GroupUserDTO>>> { 
+            public string RoleName { get; set; }
+        }
 
-        public class Handler : IRequestHandler<Query, Result<List<RoleMasterDto>>>
+        public class Handler : IRequestHandler<Query, Result<List<GroupUserDTO>>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
+            private readonly UserManager<AppUser> _userManager;
 
-            public Handler(DataContext context, IMapper mapper)
+            public Handler(DataContext context, IMapper mapper, UserManager<AppUser> userManager)
             {
                 _mapper = mapper;
                 _context = context;
+                _userManager = userManager;
             }
 
-            public async Task<Result<List<RoleMasterDto>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<GroupUserDTO>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                 //IList<AppUser> usr = await _userManager.GetUsersInRoleAsync(request.RoleName);    
-
-                // List<IdentityRole> roles = await  _context.AspNetRoles.ToListAsync();
-
-                // try{
-                //     return _mapper.Map<List<IdentityRole>, List<RoleMasterDto>>(roles);
-                // }catch(Exception ex){
-                //       throw new RestException(HttpStatusCode.OK, new { Error = $" {ex.Message}. {ex.InnerException.Message}." });
-                // }
-
-                
-                var res = await _context.AspNetRoles
-                    .ProjectTo<RoleMasterDto>(_mapper.ConfigurationProvider)
-                    .ToListAsync(cancellationToken);
-
-                return Result<List<RoleMasterDto>>.Success(res);
-
+                IList<AppUser> usr = await _userManager.GetUsersInRoleAsync(request.RoleName);
+                var res = _mapper.Map<IList<AppUser>, List<GroupUserDTO>>(usr);
+                return Result<List<GroupUserDTO>>.Success(res);
+               
             }
         }
     }
