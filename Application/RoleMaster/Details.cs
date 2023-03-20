@@ -28,7 +28,7 @@ namespace Application.RoleMasters
 
             public async Task<Result<RoleMasterDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var item = await _context.RoleMasters
+                var item = await _context.AspNetRoles
                     .ProjectTo<RoleMasterDto>(_mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(x => x.Id == request.Id);                
                 return Result<RoleMasterDto>.Success(item);

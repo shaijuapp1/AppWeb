@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace Application.RoleMasters
 {
-    public class RoleMasterValidator : AbstractValidator<RoleMaster>
+    public class RoleMasterValidator : AbstractValidator<RoleMasterDto>
     {
         public RoleMasterValidator()
         {
-            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.Name).NotEmpty();
         }
     }
 }

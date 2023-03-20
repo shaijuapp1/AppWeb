@@ -15,24 +15,24 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new List.Query()));
         }
                 
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult> GetRoleMaster(int id)
-        // {
-        //     return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
-        // }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetRoleMaster(string id)
+        {
+            return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
+        }
 
-        // [HttpPost]
-        // public async Task<IActionResult> CreateRoleMaster(RoleMaster item)
-        // {
-        //     return HandleResult(await Mediator.Send(new Create.Command { RoleMaster = item }));
-        // }
+        [HttpPost]
+        public async Task<IActionResult> CreateRoleMaster(RoleMasterDto item)
+        {
+            return HandleResult(await Mediator.Send(new Create.Command { RoleMaster = item }));
+        }
 
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> Edit(int id, RoleMaster item)
-        // {
-        //     item.Id = id;
-        //     return HandleResult(await Mediator.Send(new Edit.Command { RoleMaster = item }));
-        // }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit(string id, RoleMasterDto item)
+        {
+            item.Id = id;
+            return HandleResult(await Mediator.Send(new Edit.Command { RoleMaster = item }));
+        }
 
         // [HttpDelete("{id}")]
         // public async Task<IActionResult> Delete(int id)
