@@ -41,6 +41,20 @@ namespace API.Controllers
              return HandleResult(await Mediator.Send(new GroupUserList.Query { RoleName = id }));            
         }
 
+        //Add user role => post
+        [HttpPost("AddUserToRole")]
+		public async Task<ActionResult<bool>> AddUserToRole(AddUserToRole.Command command)
+        {
+            return HandleResult(await Mediator.Send(new AddUserToRole.Command { RoleName = command.RoleName, UserName = command.UserName }));
+        }
+
+         //Delete user role => post
+        [HttpPost("RemoveUserFromRole")]
+		public async Task<ActionResult<bool>> RemoveUserFromRole(RemoveUserFromRole.Command command)
+        {
+            return HandleResult(await Mediator.Send(new RemoveUserFromRole.Command { RoleName = command.RoleName, UserName = command.UserName }));
+        }
+
 
         // [HttpDelete("{id}")]
         // public async Task<IActionResult> Delete(int id)
