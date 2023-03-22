@@ -10,6 +10,7 @@ using Application.DataSecuritys;
 using Application.UserManagers;
 using Application.RoleMasters;
 using Microsoft.AspNetCore.Identity;
+
 //##MappingUsing##
 
 namespace Application.Core
@@ -62,6 +63,7 @@ namespace Application.Core
         }
     }
 }
+
 
 
 

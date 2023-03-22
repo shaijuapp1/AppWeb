@@ -1,4 +1,5 @@
 using Application.Core;
+using Application.UserManager;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain;
@@ -13,7 +14,7 @@ namespace Application.DataSecuritys
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public DataSecurity DataSecurity { get; set; }
+            public DataSecurityDto DataSecurity { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -38,10 +39,16 @@ namespace Application.DataSecuritys
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {               
                 var item = await _context.DataSecuritys.FindAsync(request.DataSecurity.Id);
-               
                 if (item == null) return null;
+                
+                var rs = await UserFunctions.UpdateUser(_context, item.UserListID, request.DataSecurity.UserID );
 
-                _mapper.Map(request.DataSecurity, item);
+                DataSecurity it = new DataSecurity();
+                it.TableId = request.DataSecurity.TableId;
+                it.AccessType = request.DataSecurity.AccessType;                
+                it.FiledId = request.DataSecurity.TableId;
+                //it.StatusId = request.DataSecurity.TableId;                      
+                //_mapper.Map(request.DataSecurity, item);
                 
                 var result = await _context.SaveChangesAsync() > 0;
 

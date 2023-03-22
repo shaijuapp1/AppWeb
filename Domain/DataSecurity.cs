@@ -12,7 +12,7 @@ namespace Domain
 		public int StatusId { get; set; }
 		public string AccessType { get; set; }
 		public int FiledId { get; set; }
-		public int UserID { get; set; }
+		public string UserListID { get; set; }
 		public string Access { get; set; }
     }
 }

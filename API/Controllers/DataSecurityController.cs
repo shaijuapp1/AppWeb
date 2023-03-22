@@ -22,13 +22,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDataSecurity(DataSecurity item)
+        public async Task<IActionResult> CreateDataSecurity(DataSecurityDto item)
         {
             return HandleResult(await Mediator.Send(new Create.Command { DataSecurity = item }));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, DataSecurity item)
+        public async Task<IActionResult> Edit(int id, DataSecurityDto item)
         {
             item.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { DataSecurity = item }));

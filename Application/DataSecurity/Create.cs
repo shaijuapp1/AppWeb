@@ -2,6 +2,7 @@ using System.Net;
 using Application.Core;
 using Application.Errors;
 using Application.Interfaces;
+using Application.UserManager;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain;
@@ -17,7 +18,7 @@ namespace Application.DataSecuritys
     {
         public class Command : IRequest<Result<int>>
         {
-            public DataSecurity DataSecurity { get; set; }
+            public DataSecurityDto DataSecurity { get; set; }
         }
         
         public class Handler : IRequestHandler<Command, Result<int>>
@@ -42,8 +43,19 @@ namespace Application.DataSecuritys
         }
 
             public async Task<Result<int>> Handle(Command request, CancellationToken cancellationToken)
-            {               
-                 var item = _context.DataSecuritys.Add(request.DataSecurity);
+            {       
+                string UserGrpId =  Guid.NewGuid().ToString();     
+                var rs = await UserFunctions.UpdateUser(_context, UserGrpId, request.DataSecurity.UserID );
+
+                DataSecurity it = new DataSecurity();
+                it.TableId = request.DataSecurity.TableId;
+                it.AccessType = request.DataSecurity.AccessType;
+                
+                it.FiledId = request.DataSecurity.TableId;
+                //it.StatusId = request.DataSecurity.TableId;
+                it.UserListID = UserGrpId;
+
+                 var item = _context.DataSecuritys.Add(it);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
@@ -51,7 +63,9 @@ namespace Application.DataSecuritys
                      throw new RestException(HttpStatusCode.OK, new { Error = $"No dows updated." });
                 }
 
-                 return  Result<int>.Success( request.DataSecurity.Id);
+               
+
+                return  Result<int>.Success( request.DataSecurity.Id);
             }
         }
     }

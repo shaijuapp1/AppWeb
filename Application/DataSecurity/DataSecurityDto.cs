@@ -1,6 +1,6 @@
 namespace Application.DataSecuritys
 {
-    public class DataSecurityDto
+    public class DataSecurityEditDto
     {
         
 		public int Id { get; set; }
@@ -11,4 +11,18 @@ namespace Application.DataSecuritys
 		public int UserID { get; set; }
 		public string Access { get; set; }   
     }
+
+	public class DataSecurityDto
+    {        
+		public int Id { get; set; }
+		public int TableId { get; set; }
+		public string AccessType { get; set; }
+		public string Access { get; set; }
+		public ICollection<string> UserID { get; set; }  = new List<string>();			  
+    }
+
+	// public class UserGrp
+    // {        
+	// 	public int Id { get; set; }
+	// }
 }
