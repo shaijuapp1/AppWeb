@@ -50,6 +50,7 @@ namespace Application.DataSecuritys
                 DataSecurity it = new DataSecurity();
                 it.TableId = request.DataSecurity.TableId;
                 it.AccessType = request.DataSecurity.AccessType;
+                it.Access = request.DataSecurity.Access;
                 
                 it.FiledId = request.DataSecurity.TableId;
                 //it.StatusId = request.DataSecurity.TableId;

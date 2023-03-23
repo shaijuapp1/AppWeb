@@ -18,7 +18,9 @@ namespace Application.DataSecuritys
 		public int TableId { get; set; }
 		public string AccessType { get; set; }
 		public string Access { get; set; }
-		public ICollection<string> UserID { get; set; }  = new List<string>();			  
+		public ICollection<string> UserID { get; set; }  = new List<string>();	
+		public string UserListID { get; set; }
+
     }
 
 	// public class UserGrp

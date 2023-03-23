@@ -9,27 +9,28 @@ namespace Application.UserManager
     {
         public async static Task<Result<bool>> UpdateUser(DataContext _context, 
             string GrpId, 
-            ICollection<string> users ){
+            ICollection<string> users )
+        {
 
-                ICollection<UserType> userList =  new List<UserType>();
+            ICollection<UserType> userList =  new List<UserType>();
 
-                foreach(string usr in users){
-                    UserType user = new UserType();
-                    if(usr.StartsWith("U:")){
-                        user.Type = "U";
-                    }
-                    else if(usr.StartsWith("G:")){
-                        user.Type = "G";                     
-                    }
+            foreach(string usr in users){
+                UserType user = new UserType();
+                if(usr.StartsWith("U:")){
+                    user.Type = "U";
+                }
+                else if(usr.StartsWith("G:")){
+                    user.Type = "G";                                         
+                }
 
-                    user.UserId = usr.Remove(0,2);
-                    user.GrpId = GrpId;
-                    userList.Add(user);
-                }                                
+                user.UserId = usr.Remove(0,2);
+                user.GrpId = GrpId;
+                userList.Add(user);
+            }                                
 
-                var items = await _context.UserTypes     
-                    .Where(c => c.GrpId == GrpId )
-                    .ToListAsync();
+            var items = await _context.UserTypes     
+                .Where(c => c.GrpId == GrpId )
+                .ToListAsync();
 
             //Remove if not exists
             ICollection<UserType> remList = new List<UserType>();
@@ -72,6 +73,17 @@ namespace Application.UserManager
 
 
             return Result<bool>.Success(true);
+
+        }
+
+
+        public async static Task<Result<List<UserType>>> UserTypeList(DataContext _context, string GrpId)
+        {
+            var items = await _context.UserTypes     
+                .Where(c => c.GrpId == GrpId )
+                .ToListAsync();
+
+            return Result<List<UserType>>.Success(items);
 
         }
     }
