@@ -1,0 +1,102 @@
+https://financehousesp.fh.ae:4431/bankdetails/Getbankdetails
+
+http://localhost:5000
+
+##
+
+AppConfigs
+
+##
+
+http://localhost:5000/api/AppConfigs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MTQ1ODg2NywiZXhwIjoxNjgyMDYzNjY3LCJpYXQiOjE2ODE0NTg4Njd9.QZ6zJiBk66UW-3e68_mtbq7rA0rsw-_vz2vZkd-4Fy8y46qqrzxPfLrpBXrZ7PpzNWN8M9x83JHnVC8KOZI5UQ
+
+##
+
+##
+
+POST http://localhost:5000/api/AppConfigs
+Content-Type: application/json
+Accept : application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MTQ1ODg2NywiZXhwIjoxNjgyMDYzNjY3LCJpYXQiOjE2ODE0NTg4Njd9.QZ6zJiBk66UW-3e68_mtbq7rA0rsw-_vz2vZkd-4Fy8y46qqrzxPfLrpBXrZ7PpzNWN8M9x83JHnVC8KOZI5UQ
+
+{
+    "ConfigTypeId" : "1",
+    "Title" : "T123"
+}
+
+##
+
+
+POST http://localhost:5000/api/account/login
+Content-Type:  application/json
+Accept : application/json
+
+{
+    "email" : "admin@test.com",
+    "password" : "Pa$$w0rd"
+}
+
+
+eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MTQ1ODg2NywiZXhwIjoxNjgyMDYzNjY3LCJpYXQiOjE2ODE0NTg4Njd9.QZ6zJiBk66UW-3e68_mtbq7rA0rsw-_vz2vZkd-4Fy8y46qqrzxPfLrpBXrZ7PpzNWN8M9x83JHnVC8KOZI5UQ
+
+##
+
+
+##
+
+POST http://localhost:5000/api/account/login
+Content-Type:  application/json
+Accept : application/json
+
+{
+    "email" : "admin@test.com",
+    "password" : "Pa$$w0rd"
+}
+
+##
+
+
+
+
+
+
+GET https://api.refinitiv.com/data/environmental-social-governance/v1/views/basic?universe=IBM.N HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <access_token>
+
+
+
+
+
+{
+					"name": "Login user successful",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"bob@test.com\",\n\t\"password\": \"Pa$$w0rd\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/account/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},

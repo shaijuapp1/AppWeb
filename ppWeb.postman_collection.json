@@ -1,0 +1,841 @@
+{
+	"info": {
+		"_postman_id": "8aa9b648-8cb0-487f-b443-e379466e6abe",
+		"name": "AppWeb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3202616"
+	},
+	"item": [
+		{
+			"name": "AppConfigType",
+			"item": [
+				{
+					"name": "Get AppConfigTypes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"",
+									"// response to be 200",
+									"pm.test(\"response is 200\", function() {",
+									"    pm.response.to.have.status(200)",
+									"});",
+									"",
+									"pm.test(\"has all properties\", function() {",
+									"    pm.expect(data[0]).to.have.property('id');",
+									"    pm.expect(data[0]).to.have.property('title');",
+									"    pm.expect(data[0]).to.have.property('description');",
+									"    pm.expect(data[0]).to.have.property('date');",
+									"    pm.expect(data[0]).to.have.property('city');",
+									"    pm.expect(data[0]).to.have.property('venue');",
+									"    pm.expect(data[0]).to.have.property('attendees');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/AppConfigType",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfigType"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Test 1\",\n\t\"description\": \"test \"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/AppConfigType/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfigType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get AppConfigType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/AppConfigType/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfigType",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Tuuu\",\n\t\"description\": \"Description of the test event updated 2 1 1\",\n\t\"category\": \"Culture\",\n\t\"date\": \"{{activityDate}}\",\n\t\"city\": \"London\",\n\t\"venue\": \"Tower of London updated\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/440e8181-0807-40dd-9167-d35f9e58596a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"440e8181-0807-40dd-9167-d35f9e58596a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/089c68d3-d2d4-424b-907e-7dd84e55fbfa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"089c68d3-d2d4-424b-907e-7dd84e55fbfa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AppConfig",
+			"item": [
+				{
+					"name": "Get AppConfig",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"",
+									"// response to be 200",
+									"pm.test(\"response is 200\", function() {",
+									"    pm.response.to.have.status(200)",
+									"});",
+									"",
+									"pm.test(\"has all properties\", function() {",
+									"    pm.expect(data[0]).to.have.property('id');",
+									"    pm.expect(data[0]).to.have.property('title');",
+									"    pm.expect(data[0]).to.have.property('description');",
+									"    pm.expect(data[0]).to.have.property('date');",
+									"    pm.expect(data[0]).to.have.property('city');",
+									"    pm.expect(data[0]).to.have.property('venue');",
+									"    pm.expect(data[0]).to.have.property('attendees');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/AppConfig",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create AppConfig",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"configType\": {\n    \"id\": 1\n  },\n  \"title\": \"1\",\n  \"order\": 1,\n  \"Det1\": \"New\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/AppConfig/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfig",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get AppConfigType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/AppConfigType/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfigType",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Tuuu\",\n\t\"description\": \"Description of the test event updated 2 1 1\",\n\t\"category\": \"Culture\",\n\t\"date\": \"{{activityDate}}\",\n\t\"city\": \"London\",\n\t\"venue\": \"Tower of London updated\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/440e8181-0807-40dd-9167-d35f9e58596a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"440e8181-0807-40dd-9167-d35f9e58596a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/089c68d3-d2d4-424b-907e-7dd84e55fbfa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"089c68d3-d2d4-424b-907e-7dd84e55fbfa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TableName",
+			"item": [
+				{
+					"name": "Get AppConfig",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"",
+									"// response to be 200",
+									"pm.test(\"response is 200\", function() {",
+									"    pm.response.to.have.status(200)",
+									"});",
+									"",
+									"pm.test(\"has all properties\", function() {",
+									"    pm.expect(data[0]).to.have.property('id');",
+									"    pm.expect(data[0]).to.have.property('title');",
+									"    pm.expect(data[0]).to.have.property('description');",
+									"    pm.expect(data[0]).to.have.property('date');",
+									"    pm.expect(data[0]).to.have.property('city');",
+									"    pm.expect(data[0]).to.have.property('venue');",
+									"    pm.expect(data[0]).to.have.property('attendees');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/AppConfig",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create AppConfig",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"configType\": {\n    \"id\": 1\n  },\n  \"title\": \"1\",\n  \"order\": 1,\n  \"Det1\": \"New\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/AppConfig/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfig",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get AppConfigType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/AppConfigType/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfigType",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Tuuu\",\n\t\"description\": \"Description of the test event updated 2 1 1\",\n\t\"category\": \"Culture\",\n\t\"date\": \"{{activityDate}}\",\n\t\"city\": \"London\",\n\t\"venue\": \"Tower of London updated\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/440e8181-0807-40dd-9167-d35f9e58596a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"440e8181-0807-40dd-9167-d35f9e58596a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/089c68d3-d2d4-424b-907e-7dd84e55fbfa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"089c68d3-d2d4-424b-907e-7dd84e55fbfa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TableName Copy",
+			"item": [
+				{
+					"name": "Get AppConfig",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"",
+									"// response to be 200",
+									"pm.test(\"response is 200\", function() {",
+									"    pm.response.to.have.status(200)",
+									"});",
+									"",
+									"pm.test(\"has all properties\", function() {",
+									"    pm.expect(data[0]).to.have.property('id');",
+									"    pm.expect(data[0]).to.have.property('title');",
+									"    pm.expect(data[0]).to.have.property('description');",
+									"    pm.expect(data[0]).to.have.property('date');",
+									"    pm.expect(data[0]).to.have.property('city');",
+									"    pm.expect(data[0]).to.have.property('venue');",
+									"    pm.expect(data[0]).to.have.property('attendees');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/AppConfig",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create AppConfig",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"configType\": {\n    \"id\": 1\n  },\n  \"title\": \"1\",\n  \"order\": 1,\n  \"Det1\": \"New\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/AppConfig/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfig",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get AppConfigType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/AppConfigType/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"AppConfigType",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require(\"moment\");\r",
+									"\r",
+									"pm.environment.set('activityDate', moment().add(14, 'days').toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Tuuu\",\n\t\"description\": \"Description of the test event updated 2 1 1\",\n\t\"category\": \"Culture\",\n\t\"date\": \"{{activityDate}}\",\n\t\"city\": \"London\",\n\t\"venue\": \"Tower of London updated\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/440e8181-0807-40dd-9167-d35f9e58596a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"440e8181-0807-40dd-9167-d35f9e58596a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete AppConfigType",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/activities/089c68d3-d2d4-424b-907e-7dd84e55fbfa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"activities",
+								"089c68d3-d2d4-424b-907e-7dd84e55fbfa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
