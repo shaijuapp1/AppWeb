@@ -50,16 +50,14 @@ fly launch --image shaijukumar/appweb:latest
  //run action from fet hub 
  
   flyctl deploy
-========
+==================================================================
 
 "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
- "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
+"build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
+"build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
 
- "build": "set BUILD_PATH=../API/wwwroot&& react-scripts build",
-
- ======================
+==================================================================
 dotnet watch --no-hot-reload
-
 dotnet ef  database drop -p Persistence/ -s API/
-
 dotnet ef migrations add userType1 -p Persistence/ -s API/ 
+==================================================================
