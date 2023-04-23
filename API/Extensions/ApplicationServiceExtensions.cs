@@ -40,10 +40,6 @@ namespace API.Extensions
                 {
                     // Use connection string from file.
                     connStr = config.GetConnectionString("DefaultConnection");
-                    options.UseSqlite(connStr);
-
-                    // "DefaultConnection": "Server=localhost; Port=5432; User Id=admin; Password=shaiju; Database=appweb"
-                    //options.UseNpgsql(connStr);
                 }
                 else
                 {                  
@@ -67,8 +63,7 @@ namespace API.Extensions
 
                 // Whether the connection string came from the local development configuration file
                 // or from the environment variable from FlyIO, use it to set up your DbContext.
-                
-              
+                options.UseNpgsql(connStr);
             });
             //fly.io
             

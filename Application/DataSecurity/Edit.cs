@@ -43,10 +43,13 @@ namespace Application.DataSecuritys
                 
                 var rs = await UserFunctions.UpdateUser(_context, item.UserListID, request.DataSecurity.UserID );
 
-                DataSecurity it = new DataSecurity();
-                it.TableId = request.DataSecurity.TableId;
-                it.AccessType = request.DataSecurity.AccessType;                
-                it.FiledId = request.DataSecurity.TableId;
+                //DataSecurity it = new DataSecurity();
+                item.TableId = request.DataSecurity.TableId;
+                item.AccessType = request.DataSecurity.AccessType;         
+                item.Access = request.DataSecurity.Access;       
+                item.FiledId = request.DataSecurity.TableId;
+                //it.UserListID = UserGrpId;
+
                 //it.StatusId = request.DataSecurity.TableId;                      
                 //_mapper.Map(request.DataSecurity, item);
                 
