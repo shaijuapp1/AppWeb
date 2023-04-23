@@ -87,6 +87,6 @@ namespace API.Extensions
             services.AddScoped<IUserAccessor, UserAccessor>();
 
             return services;
-        }
+        } 
     }
 }
