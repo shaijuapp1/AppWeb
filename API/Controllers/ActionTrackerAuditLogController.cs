@@ -45,5 +45,13 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new LogList.Query { type = type, Id = id }));
         }
+
+        [HttpGet("TestReq")]
+        public AppConfig TestConfig()
+        {
+            AppConfig t = new AppConfig();
+            t.Title = DateTime.Now.ToString();
+            return t;
+        }
     }
 }
