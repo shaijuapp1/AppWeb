@@ -34,12 +34,12 @@ namespace Application.##Class##s
             }
 
             public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator()
             {
-                RuleFor(x => x.##Class##).SetValidator(new ##Class##Validator());
+                public CommandValidator()
+                {
+                    RuleFor(x => x.##Class##).SetValidator(new ##Class##Validator());
+                }
             }
-        }
 
             public async Task<Result<int>> Handle(Command request, CancellationToken cancellationToken)
             {               

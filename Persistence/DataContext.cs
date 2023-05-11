@@ -23,6 +23,9 @@ namespace Persistence
 		public DbSet<DataSecurity> DataSecuritys { get; set; }
 		
 		public DbSet<RoleMaster> RoleMasters { get; set; }
+		public DbSet<ActionTrackerAuditLog> ActionTrackerAuditLogs { get; set; }
+		public DbSet<ActionTackerTypesList> ActionTackerTypesLists { get; set; }
+		public DbSet<ActionTackerTaskList> ActionTackerTaskLists { get; set; }
 		//##ModelDbSet##
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -46,6 +49,9 @@ namespace Persistence
         }
     }
 }
+
+
+
 
 
 

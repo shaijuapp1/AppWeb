@@ -35,7 +35,7 @@ namespace Application.DataSecuritys
                 _mapper = mapper;
                 _context = context;
             }
-
+ 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {               
                 var item = await _context.DataSecuritys.FindAsync(request.DataSecurity.Id);

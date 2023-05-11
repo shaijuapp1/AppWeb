@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
+
     public class TableData
     {
         [Key]
@@ -59,6 +60,7 @@ namespace Domain
         public int User8 { get; set; }
         public int User9 { get; set; }
         public int User10 { get; set; }
+       
     }
 }
 

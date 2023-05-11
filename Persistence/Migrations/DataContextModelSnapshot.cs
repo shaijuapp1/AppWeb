@@ -17,6 +17,132 @@ namespace Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
 
+            modelBuilder.Entity("Domain.ActionTackerTaskList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ActualComplectionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ComplectionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DetailsJson")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ParentID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Responsibility")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Stakeholder")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TaskType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTackerTaskLists");
+                });
+
+            modelBuilder.Entity("Domain.ActionTackerTypesList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ActionCreaedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ActionCreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ActionModifiedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ActionType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DetailsJson")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ParentID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProjectOwner")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StakeHolders")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TypeID")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTackerTypesLists");
+                });
+
+            modelBuilder.Entity("Domain.ActionTrackerAuditLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Action")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ActionBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ActionTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TaskID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTrackerAuditLogs");
+                });
+
             modelBuilder.Entity("Domain.AppConfig", b =>
                 {
                     b.Property<int>("Id")

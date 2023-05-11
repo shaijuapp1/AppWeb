@@ -14,7 +14,7 @@ namespace Domain
 		public int FiledId { get; set; }
 		public string UserListID { get; set; }
 		public string Access { get; set; }
-    }
+    } 
 }
 
 

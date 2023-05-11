@@ -1,6 +1,96 @@
-https://financehousesp.fh.ae:4431/bankdetails/Getbankdetails
+##
 
-http://localhost:5000
+http://localhost:5000/api/ActionTackerTaskLists?status=New
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+##
+
+##
+
+POST http://localhost:5000/api/ActionTackerTaskLists
+Content-Type: application/json
+Accept : application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+{
+	"Title" : "1",
+	"TypeID" : "1",
+	"ActionType" : "1",
+	"ParentID" : "1",
+	"StartDate" : "2023-05-06",
+	"EndDate" : "2023-05-07",
+	"StatusId" : "1",
+	"ActionCreaedBy" : "1",
+	"ActionCreatedTime" : "2023-05-06",
+	"DetailsJson" : "1"
+}
+
+
+##
+
+##
+
+http://localhost:5000/api/ActionTackerTypesLists
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+##
+
+##
+
+POST http://localhost:5000/api/ActionTackerTypesLists
+Content-Type: application/json
+Accept : application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+{
+	"Title" : "1",
+	"TypeID" : "1",
+	"ActionType" : "1",
+	"ParentID" : "1",
+	"StartDate" : "2023-05-06",
+	"EndDate" : "2023-05-07",
+	"StatusId" : "1",
+	"ActionCreaedBy" : "1",
+	"ActionCreatedTime" : "2023-05-06",
+	"DetailsJson" : "1"
+}
+
+
+##
+http://localhost:5000/api/ActionTrackerAuditLogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+http://localhost:5000/api/ActionTrackerAuditLogs/LogList/29
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+
+
+
+http://localhost:5000/api/ActionTrackerAuditLogs/LogList/TaskList/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+
+##
+
+##
+
+POST http://localhost:5000/api/ActionTrackerAuditLogs
+Content-Type: application/json
+Accept : application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+{
+    "TaskID" : "1",
+    "ActionBy" : "T123",
+	"ActionTime" : "2022-09-01",
+    "Comment" : "T123"
+}
+
 
 ##
 
@@ -10,20 +100,46 @@ AppConfigs
 
 http://localhost:5000/api/AppConfigs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MTQ1ODg2NywiZXhwIjoxNjgyMDYzNjY3LCJpYXQiOjE2ODE0NTg4Njd9.QZ6zJiBk66UW-3e68_mtbq7rA0rsw-_vz2vZkd-4Fy8y46qqrzxPfLrpBXrZ7PpzNWN8M9x83JHnVC8KOZI5UQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+
+http://localhost:5000/api/AppConfigs/GetAppConfigList?id=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+
+
+##
+
+http://localhost:5000/api/AppConfigs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
 
 ##
 
 ##
 
-POST http://localhost:5000/api/AppConfigs
+http://localhost:5000/api/GetAppConfigs/1
 Content-Type: application/json
 Accept : application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MTQ1ODg2NywiZXhwIjoxNjgyMDYzNjY3LCJpYXQiOjE2ODE0NTg4Njd9.QZ6zJiBk66UW-3e68_mtbq7rA0rsw-_vz2vZkd-4Fy8y46qqrzxPfLrpBXrZ7PpzNWN8M9x83JHnVC8KOZI5UQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+
+
+http://localhost:5000/api/AppConfigs/GetAppConfigList/TaskStatus
+Content-Type: application/json
+Accept : application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
+
+
+
+POST http://localhost:5000/api/AppConfigs/GetAppConfigList/1
+Content-Type: application/json
+Accept : application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
 
 {
-    "ConfigTypeId" : "1",
-    "Title" : "T123"
+    "id" : "1",
 }
 
 ##
@@ -39,7 +155,7 @@ Accept : application/json
 }
 
 
-eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MTQ1ODg2NywiZXhwIjoxNjgyMDYzNjY3LCJpYXQiOjE2ODE0NTg4Njd9.QZ6zJiBk66UW-3e68_mtbq7rA0rsw-_vz2vZkd-4Fy8y46qqrzxPfLrpBXrZ7PpzNWN8M9x83JHnVC8KOZI5UQ
+eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmFtZWlkIjoiNTk2ZjYwNzItMzExZC00NWUzLWI3MTYtZjg0NTg2YWVhMjg0IiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsIm5iZiI6MTY4MzMxNjA3MCwiZXhwIjoxNjgzOTIwODcwLCJpYXQiOjE2ODMzMTYwNzB9.XXWuWHvpXXiQ5kuQo0W9nDB92w7PN8UULWWThFcbGj2C4O4rH0T5ZiHnp-lnLzjDkzQb0z7IgrVcN85le_Hrww
 
 ##
 

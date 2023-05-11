@@ -40,13 +40,18 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
 
-        [AllowAnonymous]
-        [HttpGet("TestReq")]
-        public AppConfig TestReq()
+        [HttpGet("{GetAppConfigList}/{title}")]
+        public async Task<ActionResult> GetAppConfigList(string title)
         {
-            AppConfig t = new AppConfig();
-            t.Title = DateTime.Now.ToString();
-            return t;
+            return HandleResult(await Mediator.Send(new ConfigList.Query { Title = title }));
         }
+
+        // [HttpGet("TestReq")]
+        // public AppConfig TestConfig()
+        // {`
+        //     AppConfig t = new AppConfig();
+        //     t.Title = DateTime.Now.ToString();
+        //     return t;
+        // }
     }
 }

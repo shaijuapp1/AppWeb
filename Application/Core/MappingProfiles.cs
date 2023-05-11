@@ -11,6 +11,9 @@ using Application.UserManagers;
 using Application.RoleMasters;
 using Microsoft.AspNetCore.Identity;
 
+using Application.ActionTrackerAuditLogs;
+using Application.ActionTackerTypesLists;
+using Application.ActionTackerTaskLists;
 //##MappingUsing##
 
 namespace Application.Core
@@ -58,11 +61,26 @@ namespace Application.Core
 
             CreateMap <AppUser, GroupUserDTO>();
 
-			//##MappingProfile#    
+            CreateMap<ActionTrackerAuditLog, ActionTrackerAuditLog>(); 
+			CreateMap<ActionTrackerAuditLog, ActionTrackerAuditLogDto>();
+
+			CreateMap<ActionTackerTypesList, ActionTackerTypesList>(); 
+			CreateMap<ActionTackerTypesList, ActionTackerTypesListDto>();
+            CreateMap<ActionTackerTypesListDto, ActionTackerTypesList>();
+
+            CreateMap<ActionTackerTaskList, ActionTackerTaskList>(); 
+			CreateMap<ActionTackerTaskList, ActionTackerTaskListDto>();
+            CreateMap<ActionTackerTaskListDto, ActionTackerTaskList>();
+
+			//##MappingProfile#       
 			
         }
     }
 }
+
+
+
+
 
 
 

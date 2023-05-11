@@ -40,13 +40,13 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
 
-        [AllowAnonymous]
-        [HttpGet("TestReq")]
-        public ##Class## TestReq()
-        {
-            ##Class## t = new ##Class##();
-            t.Title = DateTime.Now.ToString();
-            return t;
-        }
+        // [AllowAnonymous]
+        // [HttpGet("TestReq")]
+        // public ##Class## TestReq()
+        // {
+        //     ##Class## t = new ##Class##();
+        //     t.Title = DateTime.Now.ToString();
+        //     return t;
+        // }
     }
 }
