@@ -47,10 +47,11 @@ namespace API.Controllers
         }
 
         [HttpGet("TestReq")]
-        public AppConfig TestConfig()
+        public ActionTackerTaskList TestConfig()
         {
-            AppConfig t = new AppConfig();
+            ActionTackerTaskList t = new ActionTackerTaskList();
             t.Title = DateTime.Now.ToString();
+            t.Test = "123";
             return t;
         }
     }

@@ -20,6 +20,7 @@ namespace Domain
 		public string Stakeholder { get; set; }//User or group
 		public string DetailsJson { get; set; }
 		public DateTime ModifiedDate { get; set; }
+		public string Test { get; set; }
     }
 }
 
