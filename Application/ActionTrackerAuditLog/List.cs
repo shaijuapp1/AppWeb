@@ -25,12 +25,28 @@ namespace Application.ActionTrackerAuditLogs
 
             public async Task<Result<List<ActionTrackerAuditLogDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                
-                var res = await _context.ActionTrackerAuditLogs
-                    .ProjectTo<ActionTrackerAuditLogDto>(_mapper.ConfigurationProvider)
-                    .ToListAsync(cancellationToken);
+                try{
+                    var res = await _context.ActionTrackerAuditLogs
+                        .ProjectTo<ActionTrackerAuditLogDto>(_mapper.ConfigurationProvider)
+                        .ToListAsync(cancellationToken);
 
-                return Result<List<ActionTrackerAuditLogDto>>.Success(res);
+                        return Result<List<ActionTrackerAuditLogDto>>.Success(res);
+                }
+                catch(Exception ex){
+                    
+                    List<ActionTrackerAuditLogDto> r1 = new List<ActionTrackerAuditLogDto>();
+
+                    ActionTrackerAuditLogDto r = new ActionTrackerAuditLogDto();
+                    r.Comment = ex.Message;
+                    r.Action = ex.StackTrace;
+                    r1.Add(r);
+
+                    return Result<List<ActionTrackerAuditLogDto>>.Success(r1);                 
+
+                }
+               
+
+                
 
             }
         }
