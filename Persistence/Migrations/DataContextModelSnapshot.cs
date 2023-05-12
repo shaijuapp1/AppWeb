@@ -112,6 +112,9 @@ namespace Persistence.Migrations
                     b.Property<string>("TypeID")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("test")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("ActionTackerTypesLists");

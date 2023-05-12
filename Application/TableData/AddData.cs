@@ -64,16 +64,16 @@ namespace Application.TableData
                 // 3. Add data into  TableFieldData
 
                 //JsonConvert
-                List<TableDataJSField> dataList 
-                    = JsonConvert.DeserializeObject<List<TableDataJSField>>(request.DataJson);
-                foreach (TableDataJSField data in dataList)
-                {
-                    // if (data.List == ListName)
-                    // {
-                    //     updateItem[data.Title] = data.Value;
-                    // }
-                    // //res += data.Title + " - " + data.Value + ", ";
-                }
+                // List<TableDataJSField> dataList 
+                //     = JsonConvert.DeserializeObject<List<TableDataJSField>>(request.DataJson);
+                // foreach (TableDataJSField data in dataList)
+                // {
+                //     // if (data.List == ListName)
+                //     // {
+                //     //     updateItem[data.Title] = data.Value;
+                //     // }
+                //     // //res += data.Title + " - " + data.Value + ", ";
+                // }
                 
                 Domain.TableData item = new Domain.TableData();
                 item.TableId = request.TableId;

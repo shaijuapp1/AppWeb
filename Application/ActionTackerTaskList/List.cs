@@ -76,7 +76,7 @@ namespace Application.ActionTackerTaskLists
                         }
                         else if(usr.Type == "G"){
                             r.ResponsibilityList.Add("G:" + usr.UserId);
-                        }                    
+                        }   
                     }
                 }
                 // var predicate = PredicateBuilder.True <ActionTackerTaskList> ();
