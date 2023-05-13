@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230311221127_DataSecurity")]
-    partial class DataSecurity
+    [Migration("20230513093949_PostgressInit")]
+    partial class PostgressInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,144 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Domain.ActionTackerTaskList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ActualComplectionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ComplectionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DetailsJson")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("ParentID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Responsibility")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Stakeholder")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TaskType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Test")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTackerTaskLists");
+                });
+
+            modelBuilder.Entity("Domain.ActionTackerTypesList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ActionCreaedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ActionCreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ActionModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ActionType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DetailsJson")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ParentID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProjectOwner")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StakeHolders")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TypeID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("test")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTackerTypesLists");
+                });
+
+            modelBuilder.Entity("Domain.ActionTrackerAuditLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Action")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ActionBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ActionTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TaskID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTrackerAuditLogs");
+                });
 
             modelBuilder.Entity("Domain.AppConfig", b =>
                 {
@@ -149,6 +287,51 @@ namespace Persistence.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.DataSecurity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Access")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AccessType")
+                        .HasColumnType("text");
+
+                    b.Property<int>("FiledId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserListID")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DataSecuritys");
+                });
+
+            modelBuilder.Entity("Domain.RoleMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleMasters");
                 });
 
             modelBuilder.Entity("Domain.TableData", b =>
@@ -359,6 +542,9 @@ namespace Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
@@ -415,25 +601,13 @@ namespace Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CustomValidationId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DataSecurityId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("FideldName")
+                    b.Property<string>("GrpId")
                         .HasColumnType("text");
 
-                    b.Property<int>("FiledType")
-                        .HasColumnType("integer");
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
 
-                    b.Property<bool>("Required")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("UserId")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

@@ -38,6 +38,11 @@ docker push shaijukumar/appweb:latest
 //upload to fly
 fly launch --image shaijukumar/appweb:latest
 
+solitary-sky-9418-db.internal.fly.dev
+
+
+appweb
+
   Username:    postgres
   Password:    Hu5CdpxbfOPif0n
   Hostname:    solitary-sky-9418-db.internal

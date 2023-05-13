@@ -65,20 +65,28 @@ namespace Application.ActionTackerTypesLists
 
                 var item = _context.ActionTackerTypesLists.Add(itm);
 
-                var result = await _context.SaveChangesAsync() > 0;
+                try{
+                    var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) {
+                    if (!result) {
                      throw new RestException(HttpStatusCode.OK, new { Error = $"No dows updated." });
-                }
-                else{            
-                    log.TaskID =  itm.Id;
-                    log.ActionTime = DateTime.Now;
-                    log.Action = request.ActionTackerTypesList.ActionTitle;
-                    log.Comment = request.ActionTackerTypesList.ActionComment;
+                    }
+                    else{            
+                        log.TaskID =  itm.Id;
+                        log.ActionTime = DateTime.Now;
+                        log.Action = request.ActionTackerTypesList.ActionTitle;
+                        log.Comment = request.ActionTackerTypesList.ActionComment;
 
-                    var logItem = _context.ActionTrackerAuditLogs.Add(log);
-                    var logResult = await _context.SaveChangesAsync() > 0;
+                        var logItem = _context.ActionTrackerAuditLogs.Add(log);
+                        var logResult = await _context.SaveChangesAsync() > 0;
+                    }
+
                 }
+                catch(Exception ex){
+                    string msg = ex.Message;
+                }
+               
+                
 
                  return  Result<int>.Success( request.ActionTackerTypesList.Id);
             }

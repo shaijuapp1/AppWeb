@@ -21,7 +21,7 @@ namespace Domain
 		public string DetailsJson { get; set; }
 		public string ProjectOwner { get; set; } //User
 		public string StakeHolders { get; set; } //User or group
-		public string test { get; set; }
+		//public string test { get; set; }
     }
 }
 
