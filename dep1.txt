@@ -18,3 +18,10 @@ fly launch --image shaijukumar/appweb:latest
 4. TokenKey
 
 fly secrets set TokenKey=8hPANrzCwIw8bjGhe2seSjLKaD88QaAr
+
+
+fly proxy 6543:6543 -a virto-db
+
+===========
+
+npm run build
