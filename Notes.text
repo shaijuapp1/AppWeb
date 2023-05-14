@@ -66,3 +66,6 @@ appweb
 dotnet watch --no-hot-reload
 dotnet ef  database drop -p Persistence/ -s API/
 dotnet ef migrations add userType1 -p Persistence/ -s API/ 
+
+=========================================
+
