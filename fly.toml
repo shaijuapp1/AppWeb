@@ -1,6 +1,6 @@
-# fly.toml file generated for solitary-sky-9418 on 2023-02-27T01:04:16+04:00
+# fly.toml file generated for virto on 2023-05-14T09:06:12+04:00
 
-app = "solitary-sky-9418"
+app = "virto"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -10,7 +10,7 @@ processes = []
 
 [env]
   ASPNETCORE_URLS = "http://+:8080"
-  
+
 [experimental]
   auto_rollback = true
 

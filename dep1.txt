@@ -1,0 +1,20 @@
+1. delete current fly:
+flyctl destroy solitary-sky-9418-db 
+flyctl destroy solitary-sky-9418
+
+2. upload to fly
+fly launch --image shaijukumar/appweb:latest
+
+  Username:    postgres
+  Password:    k02IwoSKvxhAugX
+  Hostname:    virto-db.internal
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:k02IwoSKvxhAugX@virto-db.internal:5432
+
+  3.  fly secrets list
+    Shows DATABASE_URL
+
+4. TokenKey
+
+fly secrets set TokenKey=8hPANrzCwIw8bjGhe2seSjLKaD88QaAr
